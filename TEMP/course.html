@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Udemy Course Recommendation | Courses</title>
+  <style>
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    nav {
+      background: rgba(0, 0, 0, 0.8);
+      padding: 1rem 2rem;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 10;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.3s ease;
+      cursor: pointer;
+    }
+
+    nav a:hover {
+      color: #f76c6c;
+    }
+
+    .container {
+      flex: 1;
+      padding: 3rem 2rem;
+      text-align: center;
+      width: 100%;
+      max-width: 1200px;
+    }
+
+    .results {
+      margin-top: 2rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 1.5rem;
+      border-radius: 10px;
+      transition: 0.3s ease;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    .card p {
+      font-size: 1rem;
+      color: #fff;
+      text-shadow: 1px 1px 2px #000;
+    }
+
+    .exit-btn {
+        margin-bottom: 30px;
+        padding: 8px 100px;
+        background: transparent;
+        color: #ff6b6b;
+        border: 1px solid #ff6b6b;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: normal;
+        cursor: pointer;
+        transition: 0.3s ease;
+        grid-column: span 3;
+        justify-self: center;
+        transform: translateX(150px); /* slight shift to right */
+      }
+      
+      .exit-btn:hover {
+        background: #ff6b6b;
+        color: #fff;
+      }
+      
+      
+      
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background: rgba(0, 0, 0, 0.7);
+      font-size: 0.9rem;
+      width: 100%;
+      margin-top: auto;
+    }
+  </style>
+</head>
+
+<body>
+  <nav>
+    <a href="{{ url_for('home') }}">Udemy Recommender</a>
+    <a href="{{ url_for('course_page') }}">Courses Available</a>
+  </nav>
+
+  <div class="container">
+    <div id="results" class="results">
+      <div class="card"><p>HTML5 and CSS3 - Start building beautiful websites</p></div>
+      <div class="card"><p>Complete Python Web Course: Build 8 Python Web Apps</p></div>
+      <div class="card"><p>Angular 2 Crash Course with TypeScript</p></div>
+      <div class="card"><p>JavaScript DOM Dynamic Web interactive content Boot Camp</p></div>
+      <div class="card"><p>Web Development With HTML CSS BOOTSTRAP JQUERY for Beginners</p></div>
+      <div class="card"><p>React for Visual Learners</p></div>
+      <div class="card"><p>Learn Rails: Quickly Code, Style and Launch 4 Web Apps</p></div>
+      <div class="card"><p>Learn to code in Python and learn Adobe Photoshop today!</p></div>
+      <div class="card"><p>Programming for Entrepreneurs - JavaScript</p></div>
+      <div class="card"><p>Complete AJAX Using Bootstrap, PHP From Basic To Advanced.</p></div>
+
+      <!-- Exit button -->
+      <button class="exit-btn" onclick="location.href='{{ url_for('home') }}'">Exit</button>
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2025 Udemy Course Recommendation System
+  </footer>
+</body>
+
+</html>

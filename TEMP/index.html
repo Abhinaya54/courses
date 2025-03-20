@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Udemy Course Recommendation | Home</title>
+  <style>
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    nav {
+      background: rgba(0, 0, 0, 0.8);
+      padding: 1rem 2rem;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 10;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #f76c6c;
+    }
+
+    .container {
+      flex: 1;
+      padding: 3rem 2rem;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .box-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+    }
+
+    .welcome-box,
+    .search-box,
+    .results-section {
+      display: none;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 2.5rem 2rem;
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+      animation: fadeIn 1.5s ease-in-out, glowEffect 3s infinite alternate;
+    }
+
+    .active {
+      display: block;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: #f1f1f1;
+    }
+
+    .explore-btn,
+    .search-box button,
+    .recommend-btn {
+      padding: 0.7rem 1.5rem;
+      border: none;
+      border-radius: 5px;
+      background: #f76c6c;
+      color: #fff;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .explore-btn:hover,
+    .search-box button:hover,
+    .recommend-btn:hover {
+      background: #e85a5a;
+      box-shadow: 0 0 15px #f76c6c;
+    }
+
+    .search-box input {
+      padding: 0.7rem;
+      width: 250px;
+      border: none;
+      border-radius: 5px;
+      margin-right: 10px;
+    }
+
+    .results {
+      margin-top: 3rem;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      justify-items: center;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 1.5rem;
+      border-radius: 10px;
+      transition: 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+      max-width: 300px;
+      animation: fadeInUp 0.8s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .card p {
+      margin-bottom: 1rem;
+      font-size: 1.1rem;
+    }
+
+    .card a {
+      text-decoration: none;
+      color: #f76c6c;
+      font-weight: bold;
+      border: 1px solid #f76c6c;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      display: inline-block;
+      transition: 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card a:hover {
+      background: #f76c6c;
+      color: #fff;
+      box-shadow: 0 0 15px #f76c6c;
+    }
+
+    .exit-box {
+      display: flex;
+      justify-content: center;
+      margin-top: 2rem;
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes glowEffect {
+      0% {
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+      }
+
+      100% {
+        box-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
+      }
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background: rgba(0, 0, 0, 0.7);
+      font-size: 0.9rem;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+  </style>
+</head>
+
+<body>
+  <nav>
+    <a href="/">Udemy Recommender</a>
+    <a href="course.html">Courses Available</a>
+
+  </nav>
+
+  <div class="container">
+    <div class="box-wrapper">
+
+      <!-- Welcome Box -->
+      <div class="welcome-box {% if not showtitle and not showerror %}active{% endif %}" id="welcomeBox">
+        <h1>Welcome to Udemy Course Recommender 🎓</h1>
+        <button class="explore-btn" onclick="showSearch()">Explore Courses</button>
+      </div>
+
+      <!-- Search Box -->
+      <div class="search-box {% if not showtitle and not showerror %}{% else %}{% endif %}" id="searchBox">
+        <h1>Find Courses You'll Love 🎯</h1>
+        <form action="/" method="POST">
+          <input name="course" type="text" placeholder="e.g., Python, AI, Web Dev" required />
+          <button type="submit">Recommend</button>
+        </form>
+      </div>
+
+    </div>
+
+    <!-- Results Section -->
+    <div class="results-section {% if showtitle or showerror %}active{% endif %}" id="resultsSection">
+
+      {% if showtitle %}
+      <h2 style="margin-top: 2rem;">Results for "<span style="color: #f76c6c;">{{coursename}}</span>"</h2>
+      {% endif %}
+
+      {% if showerror %}
+      <div class="card error-card" style="grid-column: 1 / -1;">
+        <p>Sorry, we couldn't find courses for "<strong>{{coursename}}</strong>". We'll notify the admin!</p>
+        <a href="/">Back to Home</a>
+      </div>
+      {% endif %}
+
+      <div class="results" id="results">
+        {% for course in coursemap %}
+        <div class="card">
+          <p>{{course}}</p>
+          <a href="{{coursemap[course]}}" target="_blank">View Course</a>
+        </div>
+        {% endfor %}
+      </div>
+
+      <!-- Recommend Another Course Button -->
+      <div class="exit-box">
+        <button class="recommend-btn" onclick="goBackToSearch()">Recommend Another Course</button>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    &copy; 2025 Udemy Course Recommendation System
+  </footer>
+
+  <script>
+    function showSearch() {
+      document.getElementById('welcomeBox').classList.remove('active');
+      document.getElementById('searchBox').classList.add('active');
+    }
+
+    function goBackToSearch() {
+      document.getElementById('resultsSection').classList.remove('active');
+      document.getElementById('searchBox').classList.add('active');
+    }
+  </script>
+
+</body>
+
+</html>
